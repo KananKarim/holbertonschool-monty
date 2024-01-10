@@ -7,9 +7,20 @@
  * @n: The integer to be added to the stack.
  */
 
-void push(stack_t **stack, unsigned int line_number, int n)
+void push(stack_t **stack, unsigned int line_number, char *n)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	int num;
+	stack_t *new_node;
+
+	num = atoi(n);
+
+	if (num == 0 && *n != '0')
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	new_node = malloc(sizeof(stack_t));
 
 	if (!new_node)
 	{
@@ -17,7 +28,7 @@ void push(stack_t **stack, unsigned int line_number, int n)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = n;
+	new_node->n = num;
 	new_node->prev = NULL;
 	new_node->next = *stack;
 
