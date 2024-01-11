@@ -12,7 +12,10 @@ void interpreter(char *opcode, char *str, unsigned int ln)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
-		{"pop", pop}
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop}
 	};
 	unsigned int i = 0, count = sizeof(ops) / sizeof(instruction_t);
 
