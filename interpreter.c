@@ -16,6 +16,7 @@ void interpreter(char *opcode, char *str, unsigned int ln)
 	};
 	unsigned int i = 0, count = sizeof(ops) / sizeof(instruction_t);
 
+	(void) str;
 	while (i < count)
 	{
 		if (strcmp(opcode, ops[i].opcode) == 0)
@@ -26,6 +27,10 @@ void interpreter(char *opcode, char *str, unsigned int ln)
 		i++;
 	}
 	fprintf(stderr, "L%u: unknown instruction %s\n", ln, opcode);
-	free(opcode), free(str), free(line), fclose(stream), sfree();
+	free(opcode);
+	if (line != NULL)
+		free(line);
+	fclose(stream);
+	sfree();
 	exit(EXIT_FAILURE);
 }
