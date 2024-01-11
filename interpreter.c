@@ -14,14 +14,15 @@ void interpreter(char *opcode, char *str, unsigned int ln)
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
-		{"add", add},
-		{"nop", nop}
+		{"add", add}
 	};
 	unsigned int i = 0, count = sizeof(ops) / sizeof(instruction_t);
 
 	(void) str;
 	while (i < count)
 	{
+		if (strcmp(opcode, "nop") == 0)
+			return;
 		if (strcmp(opcode, ops[i].opcode) == 0)
 		{
 			ops[i].f(&stack, ln);
