@@ -8,7 +8,7 @@
 
 void add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = NULL;
+	stack_t *temp;
 
 	if (!stack || !*stack || !(*stack)->next)
 	{
