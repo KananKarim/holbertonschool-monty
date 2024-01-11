@@ -8,15 +8,17 @@
 
 void add(stack_t **stack, unsigned int line_number)
 {
-	int temp = 0;
+	stack_t *temp = NULL;
 
 	if (!stack || !*stack || !(*stack)->next)
 	{
+		free(opcode), free(str), free(line), fclose(stream), sfree();
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	temp = (*stack)->n;
-	(*stack)->n = (*stack)->next->n;
-	(*stack)->next->n = temp;
+	temp = (*(*stack)).next;
+	(*(*stack)).next = (*temp).next;
+	(*(*stack)).n += (*temp).n;
+	free(temp);
 }
