@@ -15,14 +15,13 @@ void push(stack_t **stack, unsigned int line_nber)
 	{
 		while (str[i])
 		{
-			if (str[0] == '-')
-			{
+			if (i == 0 && str[i] == '-')
 				i++;
-				continue;
-			}
 			if (isdigit(str[i]) == 0)
 			{
-				free(opcode), free(str), free(line), fclose(stream), sfree();
+				free(opcode);
+				free(line);
+				fclose(stream), sfree();
 				fprintf(stderr, "L%d: usage: push integer\n", line_nber);
 				exit(EXIT_FAILURE);
 			}
@@ -33,15 +32,13 @@ void push(stack_t **stack, unsigned int line_nber)
 	else
 	{
 		free(opcode), free(str), free(line), fclose(stream), sfree();
-		fprintf(stderr, "L%d: usage: push integer\n", line_nber);
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "L%d: usage: push integer\n", line_nber), exit(EXIT_FAILURE);
 	}
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
 		free(opcode), free(str), free(line), fclose(stream), sfree();
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "Error: malloc failed\n"), exit(EXIT_FAILURE);
 	}
 	new_node->n = n, new_node->prev = NULL, new_node->next = *stack;
 	if (*stack)
